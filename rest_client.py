@@ -17,6 +17,14 @@ def get_session(name):
 
 get_session(resp.text)
 
+def set_participant_vars(**payload):
+    resp = requests.post(SERVER_URL + '/api/v1/participant_vars/', json=payload)
+    resp.raise_for_status() # ensure it succeeded
+    return resp
+
+resp = set_participant_vars(room_name='qualtrics_study', participant_label='albert_e', vars=dict(age=25, is_male=True, x=[3,6,9]))
+print(resp.text)
+
 """
 
 POST http://localhost:8000/api/v1/sessions/ HTTP/1.1
