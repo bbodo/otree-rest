@@ -22,13 +22,15 @@ def set_participant_vars(**payload):
     resp.raise_for_status() # ensure it succeeded
     return resp
 
-resp = set_participant_vars(room_name='qualtrics_study', participant_label='albert_e', vars=dict(age=25, is_male=True, x=[3,6,9]))
+resp = set_participant_vars(room_name='econ101', participant_label='Charlie', vars=dict(age=25, is_male=True, x=[3,6,9]))
 print(resp.text)
 
 """
 
-POST http://localhost:8000/api/v1/sessions/ HTTP/1.1
+POST http://localhost:8001/api/v1/sessions/ HTTP/1.1
 content-type: application/json
+otree-rest-key: testkey
+
 {
     "session_config_name": "trust",
     "room_name": "econ101",
@@ -37,11 +39,25 @@ content-type: application/json
 
 http://localhost:8000/SessionMonitor/abuu1dm4/
 
-GET http://localhost:8000/SessionMonitor/abuu1dm4/ HTTP/1.1 
+GET http://localhost:8001/SessionMonitor/abuu1dm4/ HTTP/1.1 
 content-type: application/json
 
-GET http://localhost:8000/SessionData/abuu1dm4/ HTTP/1.1 
+GET http://localhost:8001/SessionData/abuu1dm4/ HTTP/1.1 
 content-type: application/json
+
+POST http://localhost:8001/api/v1/participant_vars/ HTTP/1.1
+content-type: application/json
+otree-rest-key: testkey
+
+{
+    "room_name": "econ101",
+    "participant_label": "Alice",
+    "vars": {
+        "age": 225, 
+        "is_male": false, 
+        "x": [3,6,9]
+    }
+}
 
 
 """
