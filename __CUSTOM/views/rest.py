@@ -35,5 +35,24 @@ class Session(BaseRESTView):
         return HttpResponse(session.code)
     
     def get(self, request):
+        return JsonResponse(data=list(otree.models.session.Session.objects.defer('vars').values()), safe=False)
+
+class Participant(BaseRESTView):
+
+    url_pattern = f'{prefix}/api/sessions/'
+
+    def inner_post(self, **kwargs):
+        session = create_session(**kwargs)
+        room_name = kwargs.get('room_name')
+        if room_name:
+            channel_utils.sync_group_send_wrapper(
+                type='room_session_ready',
+                group=channel_utils.room_participants_group_name(room_name),
+                event={},
+            )
+        return HttpResponse(session.code)
+    
+    def get(self, request):
         return JsonResponse(data=list(otree.models.session.Session.objects.values()), safe=False)
+
 
