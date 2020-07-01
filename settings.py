@@ -88,4 +88,5 @@ SECRET_KEY = 'v$9%w9+#$%l3+wugg@2e4+d!eb&6!ywcl)*zyo*j!56_&1sy!+'
 
 INSTALLED_APPS = ['otree']
 
-# inactive session configs
+### CUSTOM SETTINGS - THIS DEVIATES FROM OTREE SUPPORTED CODE ###
+ROOT_URLCONF = '__CUSTOM.urls' 
