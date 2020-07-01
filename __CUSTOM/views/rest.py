@@ -1,7 +1,9 @@
+### FROM otree.views.rest - FOR POST REQUESTS
 import json
 
 import vanilla
 from django.http import HttpResponse, JsonResponse, HttpResponseNotFound
+from django.core import serializers
 
 import otree
 from otree.channels import utils as channel_utils
@@ -14,18 +16,14 @@ from otree.room import ROOM_DICT
 from otree.session import create_session
 from otree.views.abstract import BaseRESTView
 
-class RESTCreateSession(BaseRESTView):
+### my own
+from __CUSTOM.urls import prefix
 
-    url_pattern = r'^api/cool/sessions/$'
+class Session(BaseRESTView):
+
+    url_pattern = f'{prefix}/api/sessions/'
 
     def inner_post(self, **kwargs):
-        '''
-        Notes:
-        - This allows you to pass parameters that did not exist in the original config,
-        as well as params that are blocked from editing in the UI,
-        either because of datatype.
-        I can't see any specific problem with this.
-        '''
         session = create_session(**kwargs)
         room_name = kwargs.get('room_name')
         if room_name:
@@ -35,3 +33,7 @@ class RESTCreateSession(BaseRESTView):
                 event={},
             )
         return HttpResponse(session.code)
+    
+    def get(self, request):
+        return JsonResponse(data=list(otree.models.session.Session.objects.values()), safe=False)
+
