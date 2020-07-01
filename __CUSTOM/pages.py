@@ -5,6 +5,10 @@ from django.urls import reverse
 from otree import session as otree_session
 from pprint import pprint
 
+# from otree.api import Currency as c, currency_range
+# from ._builtin import Page, WaitPage
+# from .models import Constants
+
 def custom_view(request):
     return HttpResponse('hi bro')
 

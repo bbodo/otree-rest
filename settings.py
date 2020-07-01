@@ -29,7 +29,7 @@ SESSION_CONFIGS = [
         num_demo_participants=1,
         app_sequence=['survey', 'payment_info'],
     ),
-    dict(name='trust', display_name="Trust Game", num_demo_participants=2, app_sequence=['trust', 'payment_info']),
+    dict(name='trust', display_name="Trust Game", num_demo_participants=2, app_sequence=['trust', 'payment_info', 'mturk_exit_codes']),
     dict(name='prisoner', display_name="Prisoner's Dilemma", num_demo_participants=2,
         app_sequence=['prisoner', 'payment_info']),
     dict(name='volunteer_dilemma', display_name="Volunteer's Dilemma", num_demo_participants=3,
@@ -90,3 +90,4 @@ INSTALLED_APPS = ['otree']
 
 ### CUSTOM SETTINGS - THIS DEVIATES FROM OTREE SUPPORTED CODE ###
 ROOT_URLCONF = '__CUSTOM.urls' 
+INSTALLED_APPS += ['rest_framework']

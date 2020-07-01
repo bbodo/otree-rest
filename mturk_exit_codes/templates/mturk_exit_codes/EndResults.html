@@ -1,0 +1,18 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Final Result
+{% endblock %}
+
+{% block content %}
+    <p>
+        <!-- The participation fee for this study is {{session.config.participation_fee}}, and you 
+        received {{participant.payoff}}, which are converted using a ratio of 
+        ${{session.config.real_world_currency_per_point}} per point. <br>-->
+        Your cumulative payoff across all rounds is {{ participant.payoff }}.
+    </p>
+
+    {% next_button %}
+
+{% endblock %}
