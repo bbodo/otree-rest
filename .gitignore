@@ -1,3 +1,5 @@
+.vscode
+
 venv
 staticfiles
 ./db.sqlite3
