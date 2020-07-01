@@ -37,6 +37,17 @@ otree-rest-key: testkey
     "num_participants": 4
 }
 
+
+POST http://localhost:8000/api/cool/sessions/ HTTP/1.1
+content-type: application/json
+otree-rest-key: testkey
+
+{
+    "session_config_name": "trust",
+    "room_name": "econ101",
+    "num_participants": 4
+}
+
 http://localhost:8000/SessionMonitor/abuu1dm4/
 
 GET http://localhost:8001/SessionMonitor/abuu1dm4/ HTTP/1.1 
