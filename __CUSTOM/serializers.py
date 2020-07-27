@@ -1,14 +1,14 @@
 from rest_framework import serializers
 
-from otree.api import models as otree_models
-from mturk_exit_codes import models as mturk_exit_codes_models
+import otree
+#from otree.api import models as otree_models
 
 from pprint import pprint
-pprint(vars(otree_models.Session).keys())
+pprint(vars(otree.models.Session).keys())
 
 class ParticipantSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model = otree_models.Participant
+        model = otree.models.Participant
         # fields = '__all__'
         exclude = []
         """
@@ -42,7 +42,7 @@ class ParticipantSerializer(serializers.HyperlinkedModelSerializer):
 
 class SessionSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model = otree_models.Session
+        model = otree.models.Session
         exclude = []
         """ fields = [
             'participation_fee',
@@ -69,7 +69,6 @@ class SessionSerializer(serializers.HyperlinkedModelSerializer):
             'payment_info_player',
         ] """
 
-class MTurkExitCodesSubsessionSerializer(serializers.HyperlinkedModelSerializer):
+class PlayerSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model = mturk_exit_codes_models.Subsession
-        fields = '__all__'
+        model = otree.models.BasePlayer
