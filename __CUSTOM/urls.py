@@ -13,9 +13,9 @@ from rest_framework import routers
 from __CUSTOM import views as __custom_views
 
 router = routers.DefaultRouter()
-router.register('mturk_exit_codes/subsession', __custom_views.MTurkExitCodesViewSet)
-router.register('participant', __custom_views.ParticipantViewSet)
-router.register('session', __custom_views.SessionViewSet)
+# router.register('players', __custom_views.PlayerViewSet)
+router.register('participants', __custom_views.ParticipantViewSet)
+router.register('sessions', __custom_views.SessionViewSet)
 urlpatterns += [
     path('API/', include(router.urls)),
     #path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
